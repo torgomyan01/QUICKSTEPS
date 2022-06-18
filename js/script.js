@@ -1,12 +1,13 @@
-function Request(url, result){
-    const oReq = new XMLHttpRequest();
-    oReq.onload = function (){
-        result(JSON.parse(this.responseText));
-    };
-    oReq.open("get", url, true);
-    oReq.send();
-    return result;
+function Request(url, result) {
+  const oReq = new XMLHttpRequest();
+  oReq.onload = function () {
+    result(JSON.parse(this.responseText));
+  };
+  oReq.open("get", url, true);
+  oReq.send();
+  return result;
 }
+
 const activeName = 'active';
 const displayNone = 'd-none';
 const displayBlock = 'd-block';
@@ -22,26 +23,26 @@ const twoTableBlock = document.getElementById('two-table-block');
 const experienceSeriesBlock = document.getElementById('experience-series-block');
 const activityTypeExp = 'Experience Series';
 
-oneTable.onclick = function (){
-    oneTable.classList.add(activeName);
-    twoTable.classList.remove(activeName);
+oneTable.onclick = function () {
+  oneTable.classList.add(activeName);
+  twoTable.classList.remove(activeName);
 
-    oneTableBlock.classList.remove(displayNone);
-    oneTableBlock.classList.add(displayBlock);
+  oneTableBlock.classList.remove(displayNone);
+  oneTableBlock.classList.add(displayBlock);
 
-    twoTableBlock.classList.remove(displayBlock);
-    twoTableBlock.classList.add(displayNone);
+  twoTableBlock.classList.remove(displayBlock);
+  twoTableBlock.classList.add(displayNone);
 }
 
-twoTable.onclick = function (){
-    twoTable.classList.add(activeName);
-    oneTable.classList.remove(activeName);
+twoTable.onclick = function () {
+  twoTable.classList.add(activeName);
+  oneTable.classList.remove(activeName);
 
-    oneTableBlock.classList.add(displayNone);
-    oneTableBlock.classList.remove(displayBlock);
+  oneTableBlock.classList.add(displayNone);
+  oneTableBlock.classList.remove(displayBlock);
 
-    twoTableBlock.classList.add(displayBlock);
-    twoTableBlock.classList.remove(displayNone);
+  twoTableBlock.classList.add(displayBlock);
+  twoTableBlock.classList.remove(displayNone);
 }
 
 const TuDay = moment().format().split('T')[0];
@@ -49,122 +50,122 @@ const urlData = `https://api.quicksteps.com.au/api/v2/null/qs-website/${TuDay}`;
 const urlDataForTable = `https://api.quicksteps.com.au/api/v2/null/qs-website-timetable/${TuDay}`;
 
 const dayMonths = {
-    sun: 'Sun',
-    mon: 'Mon',
-    tue: 'Tue',
-    web: 'Wed',
-    thu: 'Thu',
-    fri: 'Fri',
-    sat: 'Sat'
+  sun: 'Sun',
+  mon: 'Mon',
+  tue: 'Tue',
+  web: 'Wed',
+  thu: 'Thu',
+  fri: 'Fri',
+  sat: 'Sat'
 }
 
 const levelNames = {
-    foundations1: 'Foundations 1',
-    foundations2: 'Foundations 2',
-    specialist: 'Specialist',
-    open: 'Open',
-    socialEvents: 'Social Events',
-    all: 'All'
+  foundations1: 'Foundations 1',
+  foundations2: 'Foundations 2',
+  specialist: 'Specialist',
+  open: 'Open',
+  socialEvents: 'Social Events',
+  all: 'All'
 }
 
-function levelBlock(catName, danceName){
-    switch (catName){
-        case levelNames.foundations1:
-            return `<div class="foundation__1">${danceName}</div>`;
-        case levelNames.foundations2:
-            return `<div class="foundation__2">${danceName}</div>`;
-        case levelNames.specialist:
-            return `<div class="specialist">${danceName}</div>`;
-        case levelNames.open:
-            return `<div class="open">${danceName}</div>`;
-        case levelNames.socialEvents:
-            return `<div class="social-events">${danceName}</div>`;
-        case levelNames.all:
-            return `<div class="all__levels">${danceName}</div>`;
-        default:
-            return '';
+function levelBlock(catName, danceName) {
+  switch (catName) {
+    case levelNames.foundations1:
+      return `<div class="foundation__1">${danceName}</div>`;
+    case levelNames.foundations2:
+      return `<div class="foundation__2">${danceName}</div>`;
+    case levelNames.specialist:
+      return `<div class="specialist">${danceName}</div>`;
+    case levelNames.open:
+      return `<div class="open">${danceName}</div>`;
+    case levelNames.socialEvents:
+      return `<div class="social-events">${danceName}</div>`;
+    case levelNames.all:
+      return `<div class="all__levels">${danceName}</div>`;
+    default:
+      return '';
+  }
+}
+
+function retVal(mont, monthName) {
+  let res = '';
+  mont.map((table) => {
+    const data = moment(changeData(table.date)).format('ddd');
+    const level = table.level;
+    const danceName = table.dance;
+    const result = data === monthName ? levelBlock(level, danceName) : '';
+    res = res + result
+  })
+  return res;
+}
+
+Request(urlDataForTable, function (res) {
+  startAppendTables(res.data);
+});
+
+
+Request(urlData, function (res) {
+  const _res = res.studios[0];
+  const currentExpSeries = _res.currentExpSeries;
+  const nextExpSeries = _res.nextExpSeries;
+
+  startCalc(oneTableBlock, currentExpSeries.activities);
+  startCalc(twoTableBlock, nextExpSeries.activities);
+
+  oneTable.innerHTML = addDataTableBlock(currentExpSeries);
+  twoTable.innerHTML = addDataTableBlock(nextExpSeries);
+});
+
+function addDataTableBlock(data) {
+  return `${moment(data.startDate).format('MMMM DD')} - ${moment(data.endDate).format('MMMM DD')}`;
+}
+
+function startCalc(appendingBlock, array) {
+  let currentArray = [];
+  let oneTableArray = [...array];
+  oneTableArray.map((e) => {
+    const arr = [];
+    oneTableArray.map((dance, index) => {
+      if (dance.time === e.time) {
+        arr.push(dance);
+        oneTableArray.splice(index, 1);
+      }
+    })
+    currentArray.push(arr);
+  })
+  currentArray.map((times) => {
+    const data = `${changeData(times[0]?.date)},${times[0]?.time}`;
+    appendFunction(appendingBlock, times, data)
+  })
+}
+
+
+function startAppendTables(array) {
+  let currentArrayForTables = [];
+  const toDay = moment().subtract(1, 'days').unix();
+  let bottomTables = [...array]
+    .sort((a, b) => moment(a.date).unix() - moment(b.date).unix());
+
+  const dates = [];
+  bottomTables.map((e) => {
+    const viewDates = dates.some((arrDates) => arrDates === e.date);
+    if (!viewDates) {
+      dates.push(e.date)
     }
-}
-
-function retVal(mont, monthName){
-    let res = '';
-    mont.map((table) => {
-        const data = moment(changeData(table.date)).format('ddd');
-        const level = table.level;
-        const danceName = table.dance;
-        const result = data === monthName ? levelBlock(level, danceName) : '';
-        res = res + result
-    })
-    return res;
-}
-
-Request(urlDataForTable, function (res){
-    console.log(res);
-    startAppendTables(res.data);
-});
+  })
 
 
-Request(urlData, function (res){
-    const currentExpSeries = res.currentExpSeries;
-    const nextExpSeries = res.nextExpSeries;
+  dates.map((data) => {
+    const tables = bottomTables.filter((dance) => dance.date === data);
+    currentArrayForTables.push(tables);
+  })
 
-    startCalc(oneTableBlock, currentExpSeries.activities);
-    startCalc(twoTableBlock, nextExpSeries.activities);
-
-    oneTable.innerHTML = addDataTableBlock(currentExpSeries);
-    twoTable.innerHTML = addDataTableBlock(nextExpSeries);
-});
-
-function addDataTableBlock(data){
-    return `${moment(data.startDate).format('MMMM DD')} - ${moment(data.endDate).format('MMMM DD')}`;
-}
-
-function startCalc(appendingBlock, array){
-    let currentArray = [];
-    let oneTableArray = [...array];
-    oneTableArray.map((e) => {
-        const arr = [];
-        oneTableArray.map((dance, index) => {
-            if(dance.time === e.time){
-                arr.push(dance);
-                oneTableArray.splice(index, 1);
-            }
-        })
-        currentArray.push(arr);
-    })
-    currentArray.map((times) => {
-        const data = `${changeData(times[0]?.date)},${times[0]?.time}`;
-        appendFunction(appendingBlock, times, data)
-    })
-}
-
-
-function startAppendTables(array){
-    let currentArrayForTables = [];
-    const toDay = moment().subtract(1, 'days').unix();
-    let bottomTables = [...array]
-        .sort((a, b) => moment(a.date).unix() - moment(b.date).unix());
-
-    const dates = [];
-    bottomTables.map((e) => {
-        const viewDates = dates.some((arrDates) => arrDates === e.date);
-        if(!viewDates){
-            dates.push(e.date)
-        }
-    })
-
-
-    dates.map((data) => {
-        const tables = bottomTables.filter((dance) => dance.date === data);
-        currentArrayForTables.push(tables);
-    })
-
-    function appendTable(tables){
-        let result = '';
-        tables.map((table) => {
-            const data = `${table.date},${table.time}`;
-            const expSeries = table.activityType;
-            result = result + `
+  function appendTable(tables) {
+    let result = '';
+    tables.map((table) => {
+      const data = `${table.date},${table.time}`;
+      const expSeries = table.activityType;
+      result = result + `
                 <div class="dance-item-block">
                     <div class="inf-block">
                         <div class="inf-it-1">
@@ -173,18 +174,18 @@ function startAppendTables(array){
                             <div class="name">${table.activityType} ${table.dance} ${table.level}</div>
                         </div>
                         ${
-                            table.level === levelNames.foundations1 ? `<a href="https://www.quicksteps.com.au/ogb?activity=${table.id}" class="free-button">try for free</a>` : ''
-                        }
+        table.level === levelNames.foundations1 ? `<a href="https://www.quicksteps.com.au/ogb?activity=${table.id}" class="free-button">try for free</a>` : ''
+      }
                     </div>
                 </div>
             `
-        })
-        return result;
-    }
+    })
+    return result;
+  }
 
-    currentArrayForTables.map((tables) => {
-        const startDate = `${tables[0]?.date}, ${tables[0]?.time}`;
-        experienceSeriesBlock.insertAdjacentHTML('beforeend', `
+  currentArrayForTables.map((tables) => {
+    const startDate = `${tables[0]?.date}, ${tables[0]?.time}`;
+    experienceSeriesBlock.insertAdjacentHTML('beforeend', `
             <div class="experience-series-tables">
             <div class="dance-title-block">
                  ${moment(startDate).calendar().split(' at ')[0]}, ${moment(startDate).format('LLLL').split(',')[0]} ${moment(startDate).format('LLLL').split(',')[1]}
@@ -194,16 +195,16 @@ function startAppendTables(array){
             </div>
         </div>
         `)
-    })
+  })
 }
 
-function changeData(data){
-    const slData = data.split('-');
-    return `${slData[0]}-${slData[1]}-${slData[2]}`;
+function changeData(data) {
+  const slData = data.split('-');
+  return `${slData[0]}-${slData[1]}-${slData[2]}`;
 }
 
-function appendFunction(currentBlock, times, data){
-    currentBlock.insertAdjacentHTML('beforeend',`
+function appendFunction(currentBlock, times, data) {
+  currentBlock.insertAdjacentHTML('beforeend', `
             <div class="table-td">
                 <div class="table-item">${moment(data).format('LT')}</div>
                 <div class="table-item">
