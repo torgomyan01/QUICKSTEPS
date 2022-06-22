@@ -3,8 +3,10 @@
   padding: 0;
   text-decoration: none;
   outline: none;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-family: 'Lato', sans-serif;
+  -webkit-transition: 0.2s;
   transition: 0.2s; }
 
 /* width */
@@ -30,12 +32,14 @@
   margin: 0 auto; }
 
 .d-none {
-  display: none; }
+  display: none !important; }
 
 .d-block {
   display: block; }
 
 .d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex; }
 
 .mt-1 {
@@ -103,16 +107,25 @@
   .quickSteps-timetable-page .tables-block {
     width: 100%;
     height: 87px;
-    margin-top: 150px;
+    margin-top: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center; }
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
     @media (max-width: 768px) {
       .quickSteps-timetable-page .tables-block {
         height: 57px; } }
     @media (max-width: 520px) {
       .quickSteps-timetable-page .tables-block {
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         margin-top: 50px; } }
     .quickSteps-timetable-page .tables-block .tables-block-item {
       width: calc((100% / 12) * 6);
@@ -125,9 +138,15 @@
       line-height: 30px;
       text-transform: uppercase;
       font-family: "Caviar Dreams", monospace;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       cursor: pointer; }
       @media (max-width: 768px) {
         .quickSteps-timetable-page .tables-block .tables-block-item {
@@ -153,9 +172,15 @@
     .quickSteps-timetable-page .table-body .table-title, .quickSteps-timetable-page .table-body .table-td {
       width: 100%;
       height: auto;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: start;
-      align-items: center;
+      -webkit-box-pack: start;
+          -ms-flex-pack: start;
+              justify-content: start;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       margin-top: 5px; }
       .quickSteps-timetable-page .table-body .table-title .table-item, .quickSteps-timetable-page .table-body .table-td .table-item {
         width: calc((100% / 12) * 8);
@@ -168,9 +193,15 @@
         color: #000;
         background: #E8E8E8;
         margin-right: 5px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center; }
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center; }
         @media (max-width: 520px) {
           .quickSteps-timetable-page .table-body .table-title .table-item, .quickSteps-timetable-page .table-body .table-td .table-item {
             font-size: 18px;
@@ -181,7 +212,9 @@
         .quickSteps-timetable-page .table-body .table-title .table-item:last-child, .quickSteps-timetable-page .table-body .table-td .table-item:last-child {
           margin-right: 0; }
     .quickSteps-timetable-page .table-body .table-td {
-      align-items: stretch; }
+      -webkit-box-align: stretch;
+          -ms-flex-align: stretch;
+              align-items: stretch; }
       .quickSteps-timetable-page .table-body .table-td .table-item {
         font-style: normal;
         font-weight: 500;
@@ -189,10 +222,19 @@
         line-height: 29px;
         text-align: center;
         color: #000;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         overflow: hidden; }
         @media (max-width: 520px) {
           .quickSteps-timetable-page .table-body .table-td .table-item {
@@ -211,9 +253,15 @@
     font-size: 21px;
     line-height: 30px;
     background: #0085CA;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     color: #fff; }
     @media (max-width: 520px) {
       .quickSteps-timetable-page .foundation__1,
@@ -239,14 +287,23 @@
   .quickSteps-timetable-page .level-block {
     width: 100%;
     height: 62px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     margin-top: 62px; }
     @media (max-width: 992px) {
       .quickSteps-timetable-page .level-block {
-        flex-wrap: wrap;
-        justify-content: center;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         height: auto; } }
     @media (max-width: 520px) {
       .quickSteps-timetable-page .level-block {
@@ -267,14 +324,23 @@
     background: #59CBE8;
     border: 2px solid #000;
     padding: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: start;
-    align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     margin-top: 135px; }
     @media (max-width: 992px) {
       .quickSteps-timetable-page .book-today {
-        flex-wrap: wrap;
-        justify-content: center;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         padding: 10px; } }
     @media (max-width: 520px) {
       .quickSteps-timetable-page .book-today {
@@ -314,57 +380,29 @@
           font-size: 18px; } }
     .quickSteps-timetable-page .book-today .book-today-body .buttons-list {
       margin-top: 55px;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: start;
-      align-items: center; }
+      -webkit-box-pack: start;
+          -ms-flex-pack: start;
+              justify-content: start;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
       @media (max-width: 992px) {
         .quickSteps-timetable-page .book-today .book-today-body .buttons-list {
-          justify-content: space-between; } }
+          -webkit-box-pack: justify;
+              -ms-flex-pack: justify;
+                  justify-content: space-between; } }
       @media (max-width: 520px) {
         .quickSteps-timetable-page .book-today .book-today-body .buttons-list {
           margin-top: 30px; } }
       @media (max-width: 320px) {
         .quickSteps-timetable-page .book-today .book-today-body .buttons-list {
-          flex-direction: column; } }
-      .quickSteps-timetable-page .book-today .book-today-body .buttons-list .private-lesson {
-        background: #0085CA;
-        font-style: normal;
-        font-weight: 900;
-        font-size: 21px;
-        color: #fff;
-        padding: 0 30px;
-        height: 52px;
-        border: 0;
-        margin-right: 55px;
-        cursor: pointer; }
-        @media (max-width: 520px) {
-          .quickSteps-timetable-page .book-today .book-today-body .buttons-list .private-lesson {
-            font-size: 18px;
-            padding: 0 10px;
-            margin-right: 10px; } }
-        @media (max-width: 320px) {
-          .quickSteps-timetable-page .book-today .book-today-body .buttons-list .private-lesson {
-            width: 100%;
-            margin-right: 0; } }
-      .quickSteps-timetable-page .book-today .book-today-body .buttons-list .group-class {
-        padding: 0 30px;
-        height: 52px;
-        background: #59CBE8;
-        border: 2px solid #FFFFFF;
-        box-sizing: border-box;
-        font-style: normal;
-        font-weight: 900;
-        font-size: 21px;
-        color: #fff;
-        cursor: pointer; }
-        @media (max-width: 520px) {
-          .quickSteps-timetable-page .book-today .book-today-body .buttons-list .group-class {
-            font-size: 18px;
-            padding: 0 10px; } }
-        @media (max-width: 320px) {
-          .quickSteps-timetable-page .book-today .book-today-body .buttons-list .group-class {
-            width: 100%;
-            margin-top: 10px; } }
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column; } }
   .quickSteps-timetable-page .round {
     width: 16px;
     height: 16px;
@@ -377,28 +415,45 @@
   .quickSteps-timetable-page .experience-series-block {
     width: 100%;
     height: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     margin-top: 70px; }
     @media (max-width: 768px) {
       .quickSteps-timetable-page .experience-series-block {
-        flex-wrap: wrap;
-        justify-content: space-between; } }
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between; } }
     .quickSteps-timetable-page .experience-series-block .round {
       margin-right: 44px; }
     .quickSteps-timetable-page .experience-series-block .experience-series-items {
       width: 30%;
       height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: center;
-      align-items: center; }
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
       @media (max-width: 992px) {
         .quickSteps-timetable-page .experience-series-block .experience-series-items {
           width: 100%; } }
       @media (max-width: 768px) {
         .quickSteps-timetable-page .experience-series-block .experience-series-items {
-          justify-content: start;
+          -webkit-box-pack: start;
+              -ms-flex-pack: start;
+                  justify-content: start;
           padding: 0 10px; } }
       .quickSteps-timetable-page .experience-series-block .experience-series-items .experience-series {
         font-family: "Jost", sans-serif;
@@ -442,9 +497,15 @@
       width: 100%;
       min-width: 870px;
       height: 62px;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
       background: #E8E8E8;
       margin-bottom: 5px; }
       @media (max-width: 520px) {
@@ -454,13 +515,27 @@
         background: #cbc9c9; }
       .quickSteps-timetable-page .experience-series-tables .dance-item-block .inf-block {
         width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: space-between;
-        align-items: center; }
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center; }
       .quickSteps-timetable-page .experience-series-tables .dance-item-block .inf-it-1 {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: start;
-        align-items: center; }
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: start;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center; }
+      .quickSteps-timetable-page .experience-series-tables .dance-item-block .name-studio {
+        margin-right: 20px; }
       .quickSteps-timetable-page .experience-series-tables .dance-item-block .round {
         min-width: 16px;
         margin: 0 10px; }
@@ -490,9 +565,15 @@
         min-width: 180px;
         height: 62px;
         background: #59CBE8;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         font-style: normal;
         font-weight: 900;
         font-size: 24px;
@@ -507,7 +588,63 @@
             font-size: 18px;
             height: 45px; } }
   .quickSteps-timetable-page .btn:hover {
-    box-shadow: 4px 4px 0 0 #000;
-    transform: translate(-4px, -4px); }
+    -webkit-box-shadow: 4px 4px 0 0 #000;
+            box-shadow: 4px 4px 0 0 #000;
+    -webkit-transform: translate(-4px, -4px);
+            transform: translate(-4px, -4px); }
 
-/*# sourceMappingURL=style.css.map */
+.private-lesson {
+  background: #0085CA;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  color: #fff;
+  padding: 10px 30px;
+  border: 0;
+  margin: 0 25px;
+  cursor: pointer; }
+  .private-lesson small {
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75); }
+  @media (max-width: 520px) {
+    .private-lesson {
+      font-size: 18px;
+      padding: 0 10px;
+      margin-right: 10px; } }
+  @media (max-width: 320px) {
+    .private-lesson {
+      width: 100%;
+      margin-right: 0; } }
+
+.group-class {
+  padding: 10px 30px;
+  background: #59CBE8;
+  border: 2px solid #FFFFFF;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 21px;
+  color: #fff;
+  cursor: pointer; }
+  @media (max-width: 520px) {
+    .group-class {
+      font-size: 18px;
+      padding: 0 10px; } }
+  @media (max-width: 320px) {
+    .group-class {
+      width: 100%;
+      margin-top: 10px; } }
+
+.studios {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 50px; }

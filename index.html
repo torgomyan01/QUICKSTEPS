@@ -15,8 +15,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
     <title>QuickSteps Timetable</title>
+
+
+    <style>
+        .preloader{
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: rgba(255, 255, 255, 0.80);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s, transform 0.5s;
+        }
+
+        .preloader.close{
+            opacity: 0;
+            transform: scale(0);
+        }
+    </style>
 </head>
 <body>
+
+<div class="preloader">
+
+    <img src="images/balhs.gif" alt="">
+</div>
 
 <div class="site-content quickSteps-timetable-page">
 
@@ -41,13 +69,16 @@
     </div>
 <!--    header block -->
 
+
+    <div class="studios">
+
+    </div>
+
 <!--    tables block-->
     <div class="tables-block">
         <div class="tables-block-item active" id="one-table">
-            September 19 - October 30
         </div>
-        <div class="tables-block-item" id="two-table">
-            October 31 - December 11
+        <div class="tables-block-item d-none" id="two-table">
         </div>
     </div>
     <div class="table-body" id="one-table-block">
