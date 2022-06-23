@@ -238,7 +238,6 @@ function startAppendTables(array) {
         tables.map((table) => {
             const data = `${table.date},${table.time}`;
             const expSeries = table.activityType;
-            console.log(table)
             result = result + `
                 <div class="dance-item-block">
                     <div class="inf-block">
