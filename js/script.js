@@ -247,7 +247,7 @@ function startAppendTables(array) {
                             <span class="name-studio">${table.studio.name}</span>
                             <div class="name">${table.activityType} ${table.dance} ${table.level}</div>
                         </div>
-                        ${table.level === levelNames.foundations1 ? `<a href="https://www.quicksteps.com.au/ogb?activity=${table.id}" class="free-button">try for free</a>` : ''}
+                        ${table.showOnOgb === 1 ? `<a href="https://www.quicksteps.com.au/ogb?activity=${table.id}" class="free-button">try for free</a>` : ''}
                     </div>
                 </div>
             `
