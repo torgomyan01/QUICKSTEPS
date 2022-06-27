@@ -47,7 +47,7 @@ twoTable.onclick = function () {
     twoTableBlock.classList.remove(displayNone);
 }
 
-const TuDay = moment().format().split('T')[0];
+const TuDay = moment().format('YYYY-MM-DD');
 const urlData = `https://api.quicksteps.com.au/api/v2/null/qs-website/${TuDay}`;
 const urlDataForTable = `https://api.quicksteps.com.au/api/v2/null/qs-website-timetable/${TuDay}`;
 
@@ -62,10 +62,10 @@ const dayMonths = {
 }
 
 const levelNames = {
-    foundations1: 'Foundations 1',
-    foundations2: 'Foundations 2',
+    foundations1: 'Level 1',
+    foundations2: 'Level 2',
     specialist: 'Specialist',
-    open: 'Open',
+    open: 'Level 3',
     socialEvents: 'Social Events',
     all: 'All'
 }
@@ -102,6 +102,7 @@ function retVal(mont, monthName) {
 }
 
 Request(urlDataForTable, function (res) {
+    console.log(res)
     startAppendTables(res.data);
 });
 
@@ -109,7 +110,7 @@ const studiosBlock = document.querySelector('.studios');
 const btnInformation = [];
 
 Request(urlData, function (res) {
-
+    console.log(res)
     res?.studios?.forEach((st, index) => {
         if (!Array.isArray(st?.currentExpSeries)) {
             const elem = document.createElement('button');
@@ -195,19 +196,20 @@ function addDataTableBlock(data) {
 
 function startCalc(appendingBlock, array) {
     let currentArray = [];
-    let oneTableArray = [...array];
-    oneTableArray.map((e) => {
-        const arr = [];
-        oneTableArray.map((dance, index) => {
-            if (dance.time === e.time) {
-                arr.push(dance);
-                oneTableArray.splice(index, 1);
-            }
-        })
-        currentArray.push(arr);
-    })
+    let oneTableArray = [...array].sort((a,b) => a.time.split(':')[0] - b.time.split(':')[0])
+    filterArr(oneTableArray);
+    function filterArr(array){
+        if(array.length){
+            const newProd = array.filter((dance) => dance.time === array[0].time);
+            currentArray.push(newProd)
+            const emptyProd = array.filter((dance) => dance.time !== array[0].time);
+            filterArr(emptyProd);
+        }
+    }
+
+    // console.log(currentArray.sort((a,b) => a[0].time - b[0].time), 11111111111)
     currentArray.map((times) => {
-        const data = `${changeData(times[0]?.date)},${times[0]?.time}`;
+        const data = `${changeData(times[0]?.date)} ${times[0]?.time}:00`;
         appendFunction(appendingBlock, times, data)
     })
 }
@@ -215,7 +217,6 @@ function startCalc(appendingBlock, array) {
 
 function startAppendTables(array) {
     let currentArrayForTables = [];
-    const toDay = moment().subtract(1, 'days').unix();
     let bottomTables = [...array]
         .sort((a, b) => moment(a.date).unix() - moment(b.date).unix());
 
@@ -276,9 +277,10 @@ function changeData(data) {
 }
 
 function appendFunction(currentBlock, times, data) {
+    // console.log(data)
     currentBlock.insertAdjacentHTML('beforeend', `
             <div class="table-td">
-                <div class="table-item">${moment(data).format('LT')}</div>
+                <div class="table-item">${window.moment(data).format('LT')}</div>
                 <div class="table-item">
                     ${retVal(times, dayMonths.sun)}
                 </div>
