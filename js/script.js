@@ -237,14 +237,14 @@ function startAppendTables(array) {
     function appendTable(tables) {
         let result = '';
         tables.map((table) => {
-            const data = `${table.date},${table.time}`;
+            const data = `${changeData(table.date)} ${table.time}`;
             const expSeries = table.activityType;
             result = result + `
                 <div class="dance-item-block">
                     <div class="inf-block">
                         <div class="inf-it-1">
                             <div class="round ${expSeries === activityTypeExp ? 'blue' : 'yellow'}"></div>
-                            <div class="time">${moment(data).format('LT')}</div>
+                            <div class="time">${window.moment(data).format('LT')}</div>
                             <span class="name-studio">${table.studio.name}</span>
                             <div class="name">${table.activityType} ${table.dance} ${table.level}</div>
                         </div>
