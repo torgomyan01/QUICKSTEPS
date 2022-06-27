@@ -257,11 +257,14 @@ function startAppendTables(array) {
     }
 
     currentArrayForTables.map((tables) => {
-        const startDate = `${tables[0]?.date}, ${tables[0]?.time}`;
+        const startDate = moment(`${changeData(tables[0]?.date)} ${tables[0]?.time}`).format();
+        const EndDate = moment(`${changeData(tables[tables.length - 1]?.date)} ${tables[tables.length - 1]?.time}`).format();
+
+
         experienceSeriesBlock.insertAdjacentHTML('beforeend', `
             <div class="experience-series-tables">
             <div class="dance-title-block">
-                 ${moment(startDate).calendar().split(' at ')[0]}, ${moment(startDate).format('LLLL').split(',')[0]} ${moment(startDate).format('LLLL').split(',')[1]}
+                 ${window.moment(startDate).format('dddd')}, ${moment(EndDate).format('dddd')} ${moment(EndDate).format('MMMM DD')}
             </div>
             <div class="e__s__b">
                 ${appendTable(tables)}
