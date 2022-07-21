@@ -163,6 +163,11 @@ function UpdateTableInformation() {
             const elmId = +this.id;
             const currentInfo = btnInformation.find((_i) => _i.id === elmId);
 
+            document.querySelectorAll('.table-td').forEach((item) => {
+                item.outerHTML = '';
+            })
+
+
             changeTableInformation(
                 oneTableBlock,
                 oneTable,
