@@ -25,9 +25,11 @@ const twoTableBlock = document.getElementById('two-table-block');
 const experienceSeriesBlock = document.getElementById('experience-series-block');
 const activityTypeExp = 'Experience Series';
 
+const showMore = document.getElementById('show_more');
 
-oneTable.onclick = function () {
+oneTable.onclick = () => {
     oneTable.classList.add(activeName);
+    twoTable.classList.remove(activeName);
 
     oneTableBlock.classList.remove(displayNone);
     oneTableBlock.classList.add(displayBlock);
@@ -36,7 +38,7 @@ oneTable.onclick = function () {
     twoTableBlock.classList.add(displayNone);
 }
 
-twoTable.onclick = function () {
+twoTable.onclick = () => {
     twoTable.classList.add(activeName);
     oneTable.classList.remove(activeName);
 
@@ -101,10 +103,19 @@ function retVal(mont, monthName) {
     return res;
 }
 
+let showMoreCount = 7; // THIS VAR FOR SHOW MORE COUNT
+let allQuArray = [];
+
 Request(urlDataForTable, function (res) {
-    console.log(res)
-    startAppendTables(res.data);
+    allQuArray = res.data;
+    startAppendTables();
 });
+
+showMore.addEventListener('click', function (){
+    showMoreCount += 7;
+    startAppendTables();
+})
+
 
 const studiosBlock = document.querySelector('.studios');
 const btnInformation = [];
@@ -220,13 +231,17 @@ function startCalc(appendingBlock, array) {
 }
 
 
-function startAppendTables(array) {
+
+
+function startAppendTables() {
+    experienceSeriesBlock.innerHTML = '';
     let currentArrayForTables = [];
-    let bottomTables = [...array]
+    let bottomTables = [...allQuArray]
         .sort((a, b) => moment(a.date).unix() - moment(b.date).unix());
 
+
     const dates = [];
-    bottomTables.map((e) => {
+    bottomTables.forEach((e) => {
         const viewDates = dates.some((arrDates) => arrDates === e.date);
         if (!viewDates) {
             dates.push(e.date)
@@ -234,14 +249,17 @@ function startAppendTables(array) {
     })
 
 
-    dates.map((data) => {
+    dates.forEach((data) => {
         const tables = bottomTables.filter((dance) => dance.date === data);
         currentArrayForTables.push(tables);
     })
+    if(showMoreCount > currentArrayForTables.length){
+        showMore.classList.add(displayNone)
+    }
 
     function appendTable(tables) {
         let result = '';
-        tables.map((table) => {
+        tables.forEach((table) => {
             const data = `${changeData(table.date)} ${table.time}`;
             const expSeries = table.activityType;
             result = result + `
@@ -261,21 +279,23 @@ function startAppendTables(array) {
         return result;
     }
 
-    currentArrayForTables.map((tables) => {
-        const startDate = moment(`${changeData(tables[0]?.date)} ${tables[0]?.time}`).format();
-        const EndDate = moment(`${changeData(tables[tables.length - 1]?.date)} ${tables[tables.length - 1]?.time}`).format();
+    currentArrayForTables.forEach((tables, index) => {
+        if(index <= showMoreCount){
+            const startDate = moment(`${changeData(tables[0]?.date)} ${tables[0]?.time}`).format();
+            const EndDate = moment(`${changeData(tables[tables.length - 1]?.date)} ${tables[tables.length - 1]?.time}`).format();
 
 
-        experienceSeriesBlock.insertAdjacentHTML('beforeend', `
-            <div class="experience-series-tables">
-            <div class="dance-title-block">
-                 ${window.moment(startDate).format('dddd')}, ${moment(EndDate).format('dddd')} ${moment(EndDate).format('MMMM DD')}
-            </div>
-            <div class="e__s__b">
-                ${appendTable(tables)}
-            </div>
-        </div>
-        `)
+            experienceSeriesBlock.insertAdjacentHTML('beforeend', `
+                <div class="experience-series-tables">
+                    <div class="dance-title-block">
+                         ${window.moment(startDate).format('dddd')}, ${moment(EndDate).format('dddd')} ${moment(EndDate).format('MMMM DD')}
+                    </div>
+                    <div class="e__s__b">
+                        ${appendTable(tables)}
+                    </div>
+                </div>
+            `)
+        }
     })
 }
 

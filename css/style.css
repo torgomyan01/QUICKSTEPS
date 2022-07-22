@@ -648,3 +648,22 @@
       -ms-flex-align: center;
           align-items: center;
   margin-top: 50px; }
+
+.show-more {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 50px; }
+  .show-more span {
+    font-size: 20px;
+    color: #59CBE8;
+    cursor: pointer; }
+    .show-more span:hover {
+      color: rgba(67, 166, 191, 0.96); }

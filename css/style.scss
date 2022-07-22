@@ -640,3 +640,17 @@ $c-blue-hov: rgba(67, 166, 191, 0.96);
   align-items: center;
   margin-top: 50px;
 }
+
+.show-more{
+  width: 100%;
+  @include d-flex('c-c');
+  margin-bottom: 50px;
+  span{
+    font-size: 20px;
+    color: $c-blue;
+    cursor: pointer;
+    &:hover{
+      color: $c-blue-hov;
+    }
+  }
+}

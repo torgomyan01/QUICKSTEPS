@@ -1,164 +1,170 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="//db.onlinewebfonts.com/c/b272450a19485b6e0cefb63200382c4a?family=Caviar+Dreams" rel="stylesheet"
-          type="text/css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
-    <script src="js/moment.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="//db.onlinewebfonts.com/c/b272450a19485b6e0cefb63200382c4a?family=Caviar+Dreams" rel="stylesheet"
+        type="text/css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap"
+        rel="stylesheet">
+  <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap"
+      rel="stylesheet">
+  <script src="js/moment.min.js"></script>
 
-    <title>QuickSteps Timetable</title>
+  <title>QuickSteps Timetable</title>
 
 
-    <style>
-        .preloader{
-            position: fixed;
-            left: 0;
-            top: 0;
-            background: rgba(255, 255, 255, 0.80);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100vh;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            transition: opacity 0.3s, transform 0.5s;
-        }
+  <style>
+      .preloader {
+          position: fixed;
+          left: 0;
+          top: 0;
+          background: rgba(255, 255, 255, 0.80);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100vh;
+          z-index: 100;
+          backdrop-filter: blur(10px);
+          transition: opacity 0.3s, transform 0.5s;
+      }
 
-        .preloader.close{
-            opacity: 0;
-            transform: scale(0);
-        }
-    </style>
+      .preloader.close {
+          opacity: 0;
+          transform: scale(0);
+      }
+  </style>
 </head>
 <body>
 
 <div class="preloader">
 
-    <img src="images/balhs.gif" alt="">
+  <img src="images/balhs.gif" alt="">
 </div>
 
 <div class="site-content quickSteps-timetable-page">
 
-    <div class="round-header-block"></div>
+  <div class="round-header-block"></div>
 
-<!--    header block -->
-    <div class="header-block">
-        <h1 class="page-title">QuickSteps Timetable</h1>
-        <div class="description-bloc">
-            <p class="">
-                QuickSteps has more than 50 group classes available per week for our members. We
-                think this might be the most group dance classes available at any Latin, Swing or Ballroom dance studio
-                anywhere in the world!
-            </p>
-            <p class="mt-2">
-                Take the challenge, help prove us wrong. <a href="#" class="c-blue">Click here</a> for more details.
-            </p>
-            <p class="mt-2">
-                If you are interested in our memberships or group dance lessons, please first <a href="#" class="c-blue">get in contact with us.</a>
-            </p>
-        </div>
+  <!--    header block -->
+  <div class="header-block">
+    <h1 class="page-title">QuickSteps Timetable</h1>
+    <div class="description-bloc">
+      <p class="">
+        QuickSteps has more than 50 group classes available per week for our members. We
+        think this might be the most group dance classes available at any Latin, Swing or Ballroom dance studio
+        anywhere in the world!
+      </p>
+      <p class="mt-2">
+        Take the challenge, help prove us wrong. <a href="#" class="c-blue">Click here</a> for more details.
+      </p>
+      <p class="mt-2">
+        If you are interested in our memberships or group dance lessons, please first <a href="#" class="c-blue">get in
+        contact with us.</a>
+      </p>
     </div>
-<!--    header block -->
+  </div>
+  <!--    header block -->
 
 
-    <div class="studios">
+  <div class="studios">
 
+  </div>
+
+  <!--    tables block-->
+  <div class="tables-block">
+    <div class="tables-block-item active" id="one-table">
     </div>
-
-<!--    tables block-->
-    <div class="tables-block">
-        <div class="tables-block-item active" id="one-table">
-        </div>
-        <div class="tables-block-item d-none" id="two-table">
-        </div>
+    <div class="tables-block-item d-none" id="two-table">
     </div>
-    <div class="table-body" id="one-table-block">
-        <div class="table-title">
-            <div class="table-item">Times</div>
-            <div class="table-item">Sunday</div>
-            <div class="table-item">Monday</div>
-            <div class="table-item">Tuesday</div>
-            <div class="table-item">Wednesday</div>
-            <div class="table-item">Thursday</div>
-            <div class="table-item">Friday</div>
-            <div class="table-item">Saturday</div>
-        </div>
+  </div>
+  <div class="table-body" id="one-table-block">
+    <div class="table-title">
+      <div class="table-item">Times</div>
+      <div class="table-item">Sunday</div>
+      <div class="table-item">Monday</div>
+      <div class="table-item">Tuesday</div>
+      <div class="table-item">Wednesday</div>
+      <div class="table-item">Thursday</div>
+      <div class="table-item">Friday</div>
+      <div class="table-item">Saturday</div>
     </div>
-    <div class="table-body d-none" id="two-table-block">
-        <div class="table-title">
-            <div class="table-item">Times</div>
-            <div class="table-item">Sunday</div>
-            <div class="table-item">Monday</div>
-            <div class="table-item">Tuesday</div>
-            <div class="table-item">Wednesday</div>
-            <div class="table-item">Thursday</div>
-            <div class="table-item">Friday</div>
-            <div class="table-item">Saturday</div>
-        </div>
+  </div>
+  <div class="table-body d-none" id="two-table-block">
+    <div class="table-title">
+      <div class="table-item">Times</div>
+      <div class="table-item">Sunday</div>
+      <div class="table-item">Monday</div>
+      <div class="table-item">Tuesday</div>
+      <div class="table-item">Wednesday</div>
+      <div class="table-item">Thursday</div>
+      <div class="table-item">Friday</div>
+      <div class="table-item">Saturday</div>
     </div>
-<!--    tables block-->
+  </div>
+  <!--    tables block-->
 
-<!--level block-->
-    <div class="level-block">
-        <div class="foundation__1">Level 1</div>
-        <div class="social-events">Social events</div>
-        <div class="foundation__2">Level 2</div>
-        <div class="open">Level 3</div>
-        <div class="specialist">Specialist</div>
-        <div class="all__levels">All levels</div>
+  <!--level block-->
+  <div class="level-block">
+    <div class="foundation__1">Level 1</div>
+    <div class="social-events">Social events</div>
+    <div class="foundation__2">Level 2</div>
+    <div class="open">Level 3</div>
+    <div class="specialist">Specialist</div>
+    <div class="all__levels">All levels</div>
+  </div>
+  <!--level block-->
+
+  <!--    Try for free. Book today.-->
+  <div class="book-today">
+    <div class="image"></div>
+    <div class="book-today-body">
+      <h1>Try for free. Book today.</h1>
+      <h3>Select your preferred time & book in 1 minute</h3>
+      <div class="buttons-list">
+        <button class="btn private-lesson">
+          Free private lesson
+        </button>
+        <button class="btn group-class">
+          Free group class
+        </button>
+      </div>
     </div>
-<!--level block-->
+  </div>
+  <!--    Try for free. Book today.-->
 
-<!--    Try for free. Book today.-->
-    <div class="book-today">
-        <div class="image"></div>
-        <div class="book-today-body">
-            <h1>Try for free. Book today.</h1>
-            <h3>Select your preferred time & book in 1 minute</h3>
-            <div class="buttons-list">
-                <button class="btn private-lesson">
-                    Free private lesson
-                </button>
-                <button class="btn group-class">
-                    Free group class
-                </button>
-            </div>
-        </div>
-    </div>
-<!--    Try for free. Book today.-->
-
-<!--    Experience Series-->
-    <div class="experience-series-block">
-        <div class="experience-series-items">
-            <div class="round yellow"></div>
-            <div>
-                <h3 class="experience-series">Experience Series</h3>
-                <p class="text"> 6 week course</p>
-            </div>
-        </div>
-
-
-        <div class="experience-series-items">
-            <div class="round blue"></div>
-            <div>
-                <h3 class="experience-series">Drop In</h3>
-                <p class="text">once off class</p>
-            </div>
-        </div>
+  <!--    Experience Series-->
+  <div class="experience-series-block">
+    <div class="experience-series-items">
+      <div class="round yellow"></div>
+      <div>
+        <h3 class="experience-series">Experience Series</h3>
+        <p class="text"> 6 week course</p>
+      </div>
     </div>
 
-<!--    Experience Series-->
-    <div id="experience-series-block"></div>
+
+    <div class="experience-series-items">
+      <div class="round blue"></div>
+      <div>
+        <h3 class="experience-series">Drop In</h3>
+        <p class="text">once off class</p>
+      </div>
+    </div>
+  </div>
+
+  <!--    Experience Series-->
+  <div id="experience-series-block"></div>
+  <div class="show-more">
+    <span id="show_more">Show More</span>
+  </div>
 </div>
 
 
